@@ -39,8 +39,7 @@ void Draw(int arr[4][4])
 	{
 		int row, col, check = 1, count = 0;
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleCursorPosition(h, { 0,0 });
-		cout << endl;
+		SetConsoleCursorPosition(h, { 0,1 });
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 4; j++)
