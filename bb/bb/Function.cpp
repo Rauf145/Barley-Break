@@ -62,13 +62,6 @@ void Draw(int arr[4][4])
 			}
 			cout << endl << endl;
 		}
-		if (count == 15)
-		{
-			SetConsoleTextAttribute(h, 10);
-			cout << "\t\tYou win\n";
-			SetConsoleTextAttribute(h, 7);
-			return;
-		}
 		SetConsoleCursorPosition(h, { 0,0 });
 		for (short i = 0; i < 9; i++)
 		{
@@ -80,6 +73,13 @@ void Draw(int arr[4][4])
 					cout << char(219);
 				}
 			}
+		}
+		if (count == 15)
+		{
+			SetConsoleTextAttribute(h, 10);
+			cout << "\n\t\tYou win\n";
+			SetConsoleTextAttribute(h, 7);
+			return;
 		}
 		action(arr, row, col);
 	}
@@ -93,7 +93,7 @@ void action(int arr[4][4], int row, int col)
 	if (key == 67 || key == 99) // chit code
 	{
 		time = clock();
-		while (diff < 500)
+		while (diff < 200)
 		{
 			diff = clock() - time;
 			if (kbhit())
@@ -101,7 +101,7 @@ void action(int arr[4][4], int row, int col)
 			if (key == 72 || key == 104)
 			{
 				time = clock();
-				while (diff < 500)
+				while (diff < 200)
 				{
 					diff = clock() - time;
 					if (kbhit())
@@ -109,7 +109,7 @@ void action(int arr[4][4], int row, int col)
 					if (key == 73 || key == 105)
 					{
 						time = clock();
-						while (diff < 500)
+						while (diff < 200)
 						{
 							diff = clock() - time;
 							if (kbhit())
@@ -120,9 +120,10 @@ void action(int arr[4][4], int row, int col)
 								cout << "\nChit code activeted\n";
 								while (true)
 								{
-									cout << "Enter coord(x,y): \n";
+									SetConsoleTextAttribute(h, 12);
+									cout << "Enter coord(y,x): \n";
 									SetConsoleTextAttribute(h, 7);
-									cin >> x1 >> y1;
+									cin >> y1 >> x1;
 									if (x1 >= 1 && x1 <= 4 && y1 >= 1 && y1 <= 4)
 									{
 										arr[row][col] = arr[y1 - 1][x1 - 1];		
