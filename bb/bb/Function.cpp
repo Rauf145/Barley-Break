@@ -39,6 +39,8 @@ void Draw(int arr[4][4])
 	{
 		int row, col, check = 1, count = 0;
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+		system("cls");
+		SetConsoleTextAttribute(h, 7);
 		SetConsoleCursorPosition(h, { 0,1 });
 		for (int i = 0; i < 4; i++)
 		{
@@ -85,8 +87,63 @@ void Draw(int arr[4][4])
 
 void action(int arr[4][4], int row, int col)
 {
-	int key;
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	int key, time, x1 = 0, y1 = 0, diff = 0;
 	key = getch();
+	if (key == 67 || key == 99) // chit code
+	{
+		time = clock();
+		while (diff < 500)
+		{
+			diff = clock() - time;
+			if (kbhit())
+				key = getch();
+			if (key == 72 || key == 104)
+			{
+				time = clock();
+				while (diff < 500)
+				{
+					diff = clock() - time;
+					if (kbhit())
+						key = getch();
+					if (key == 73 || key == 105)
+					{
+						time = clock();
+						while (diff < 500)
+						{
+							diff = clock() - time;
+							if (kbhit())
+								key = getch();
+							if (key == 84 || key == 116)
+							{
+								SetConsoleTextAttribute(h, 12);
+								cout << "\nChit code activeted\n";
+								while (true)
+								{
+									cout << "Enter coord(x,y): \n";
+									SetConsoleTextAttribute(h, 7);
+									cin >> x1 >> y1;
+									if (x1 >= 1 && x1 <= 4 && y1 >= 1 && y1 <= 4)
+									{
+										arr[row][col] = arr[y1 - 1][x1 - 1];		
+										row = y1 - 1;
+										col = x1 - 1;
+										arr[row][col] = 0;
+										break;
+									}
+									else
+										cout << "Error\n";
+								}
+								break;
+							}
+						}
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
 	if (key == 115 && row > 0)
 	{
 		arr[row][col] = arr[row - 1][col];
